@@ -28,48 +28,52 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition3 = new Telerik.WinControls.UI.TableViewDefinition();
-            this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
+            this.lblTimer = new Telerik.WinControls.UI.RadLabel();
             this.gridLeaderboard = new Telerik.WinControls.UI.RadGridView();
             this.btnSetupForm = new Telerik.WinControls.UI.RadButton();
             this.btnCheckForm = new Telerik.WinControls.UI.RadButton();
             this.btnResetTimer = new Telerik.WinControls.UI.RadButton();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.chkEnableBuzzer = new Telerik.WinControls.UI.RadCheckBox();
-            this.radCheckBox2 = new Telerik.WinControls.UI.RadCheckBox();
             this.btnExportPDF = new Telerik.WinControls.UI.RadButton();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
+            this.radThemeManager1 = new Telerik.WinControls.RadThemeManager();
+            this.telerikMetroTheme1 = new Telerik.WinControls.Themes.TelerikMetroTheme();
+            ((System.ComponentModel.ISupportInitialize)(this.lblTimer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridLeaderboard)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridLeaderboard.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSetupForm)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCheckForm)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnResetTimer)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkEnableBuzzer)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnExportPDF)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
-            // radLabel1
+            // lblTimer
             // 
-            this.radLabel1.Font = new System.Drawing.Font("DS-Digital", 100F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.radLabel1.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.radLabel1.Location = new System.Drawing.Point(493, 3);
-            this.radLabel1.Name = "radLabel1";
-            this.radLabel1.Size = new System.Drawing.Size(421, 150);
-            this.radLabel1.TabIndex = 0;
-            this.radLabel1.Text = "00.000";
+            this.lblTimer.Font = new System.Drawing.Font("DS-Digital", 100F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.lblTimer.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.lblTimer.Location = new System.Drawing.Point(493, 3);
+            this.lblTimer.Name = "lblTimer";
+            this.lblTimer.Size = new System.Drawing.Size(421, 150);
+            this.lblTimer.TabIndex = 0;
+            this.lblTimer.Text = "00.000";
+            this.lblTimer.ThemeName = "ControlDefault";
             // 
             // gridLeaderboard
             // 
+            this.gridLeaderboard.AutoScroll = true;
+            this.gridLeaderboard.AutoSizeRows = true;
+            this.gridLeaderboard.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridLeaderboard.Location = new System.Drawing.Point(47, 137);
             // 
             // 
             // 
-            this.gridLeaderboard.MasterTemplate.ViewDefinition = tableViewDefinition3;
+            this.gridLeaderboard.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
+            this.gridLeaderboard.MasterTemplate.ViewDefinition = tableViewDefinition2;
             this.gridLeaderboard.Name = "gridLeaderboard";
             this.gridLeaderboard.Size = new System.Drawing.Size(1287, 444);
             this.gridLeaderboard.TabIndex = 1;
+            this.gridLeaderboard.ThemeName = "ControlDefault";
             // 
             // btnSetupForm
             // 
@@ -78,6 +82,7 @@
             this.btnSetupForm.Size = new System.Drawing.Size(137, 30);
             this.btnSetupForm.TabIndex = 2;
             this.btnSetupForm.Text = "Go to Setup";
+            this.btnSetupForm.ThemeName = "ControlDefault";
             this.btnSetupForm.Click += new System.EventHandler(this.btnSetupForm_Click);
             // 
             // btnCheckForm
@@ -87,6 +92,7 @@
             this.btnCheckForm.Size = new System.Drawing.Size(137, 30);
             this.btnCheckForm.TabIndex = 3;
             this.btnCheckForm.Text = "Go to Check";
+            this.btnCheckForm.ThemeName = "ControlDefault";
             this.btnCheckForm.Click += new System.EventHandler(this.btnCheckForm_Click);
             // 
             // btnResetTimer
@@ -97,22 +103,7 @@
             this.btnResetTimer.Size = new System.Drawing.Size(287, 82);
             this.btnResetTimer.TabIndex = 4;
             this.btnResetTimer.Text = "Reset Timer ";
-            // 
-            // chkEnableBuzzer
-            // 
-            this.chkEnableBuzzer.Location = new System.Drawing.Point(1078, 587);
-            this.chkEnableBuzzer.Name = "chkEnableBuzzer";
-            this.chkEnableBuzzer.Size = new System.Drawing.Size(80, 18);
-            this.chkEnableBuzzer.TabIndex = 5;
-            this.chkEnableBuzzer.Text = "Play buzzer";
-            // 
-            // radCheckBox2
-            // 
-            this.radCheckBox2.Location = new System.Drawing.Point(1078, 611);
-            this.radCheckBox2.Name = "radCheckBox2";
-            this.radCheckBox2.Size = new System.Drawing.Size(256, 18);
-            this.radCheckBox2.TabIndex = 6;
-            this.radCheckBox2.Text = "Save leaderboard automatically (timestamped)";
+            this.btnResetTimer.ThemeName = "ControlDefault";
             // 
             // btnExportPDF
             // 
@@ -121,6 +112,7 @@
             this.btnExportPDF.Size = new System.Drawing.Size(137, 30);
             this.btnExportPDF.TabIndex = 3;
             this.btnExportPDF.Text = "Export as PDF";
+            this.btnExportPDF.ThemeName = "ControlDefault";
             // 
             // MainForm
             // 
@@ -128,27 +120,24 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1408, 729);
             this.Controls.Add(this.btnExportPDF);
-            this.Controls.Add(this.radCheckBox2);
-            this.Controls.Add(this.chkEnableBuzzer);
             this.Controls.Add(this.btnResetTimer);
             this.Controls.Add(this.btnCheckForm);
             this.Controls.Add(this.btnSetupForm);
             this.Controls.Add(this.gridLeaderboard);
-            this.Controls.Add(this.radLabel1);
+            this.Controls.Add(this.lblTimer);
             this.Name = "MainForm";
             // 
             // 
             // 
             this.RootElement.ApplyShapeToControl = true;
-            this.Text = "Qiuz Manager";
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
+            this.Text = "Quiz Manager";
+            this.ThemeName = "ControlDefault";
+            ((System.ComponentModel.ISupportInitialize)(this.lblTimer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridLeaderboard.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridLeaderboard)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSetupForm)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCheckForm)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnResetTimer)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkEnableBuzzer)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnExportPDF)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
@@ -158,14 +147,14 @@
 
         #endregion
 
-        private Telerik.WinControls.UI.RadLabel radLabel1;
+        private Telerik.WinControls.UI.RadLabel lblTimer;
         private Telerik.WinControls.UI.RadGridView gridLeaderboard;
         private Telerik.WinControls.UI.RadButton btnSetupForm;
         private Telerik.WinControls.UI.RadButton btnCheckForm;
         private Telerik.WinControls.UI.RadButton btnResetTimer;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private Telerik.WinControls.UI.RadCheckBox chkEnableBuzzer;
-        private Telerik.WinControls.UI.RadCheckBox radCheckBox2;
         private Telerik.WinControls.UI.RadButton btnExportPDF;
+        private Telerik.WinControls.RadThemeManager radThemeManager1;
+        private Telerik.WinControls.Themes.TelerikMetroTheme telerikMetroTheme1;
     }
 }

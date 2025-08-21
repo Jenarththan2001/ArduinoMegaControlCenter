@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.spinTimer = new Telerik.WinControls.UI.RadSpinEditor();
+            this.nudDurationSec = new Telerik.WinControls.UI.RadSpinEditor();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
@@ -47,7 +47,7 @@
             this.txtSchoolName5 = new Telerik.WinControls.UI.RadTextBox();
             this.btnStartQuiz = new Telerik.WinControls.UI.RadButton();
             this.btnApplySettings = new Telerik.WinControls.UI.RadButton();
-            ((System.ComponentModel.ISupportInitialize)(this.spinTimer)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudDurationSec)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
@@ -69,18 +69,19 @@
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
-            // spinTimer
+            // nudDurationSec
             // 
-            this.spinTimer.Location = new System.Drawing.Point(136, 12);
-            this.spinTimer.Maximum = new decimal(new int[] {
+            this.nudDurationSec.Location = new System.Drawing.Point(136, 12);
+            this.nudDurationSec.Maximum = new decimal(new int[] {
             500,
             0,
             0,
             0});
-            this.spinTimer.Name = "spinTimer";
-            this.spinTimer.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.spinTimer.Size = new System.Drawing.Size(66, 28);
-            this.spinTimer.TabIndex = 0;
+            this.nudDurationSec.Name = "nudDurationSec";
+            this.nudDurationSec.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.nudDurationSec.Size = new System.Drawing.Size(66, 24);
+            this.nudDurationSec.TabIndex = 0;
+            this.nudDurationSec.ThemeName = "ControlDefault";
             // 
             // radLabel1
             // 
@@ -89,6 +90,7 @@
             this.radLabel1.Size = new System.Drawing.Size(121, 18);
             this.radLabel1.TabIndex = 1;
             this.radLabel1.Text = "Timer duration (in sec):";
+            this.radLabel1.ThemeName = "ControlDefault";
             // 
             // radLabel2
             // 
@@ -97,6 +99,7 @@
             this.radLabel2.Size = new System.Drawing.Size(103, 18);
             this.radLabel2.TabIndex = 2;
             this.radLabel2.Text = "Number of schools:";
+            this.radLabel2.ThemeName = "ControlDefault";
             // 
             // radLabel3
             // 
@@ -105,6 +108,7 @@
             this.radLabel3.Size = new System.Drawing.Size(107, 18);
             this.radLabel3.TabIndex = 3;
             this.radLabel3.Text = "Number of options :";
+            this.radLabel3.ThemeName = "ControlDefault";
             // 
             // radLabel4
             // 
@@ -113,6 +117,7 @@
             this.radLabel4.Size = new System.Drawing.Size(102, 18);
             this.radLabel4.TabIndex = 4;
             this.radLabel4.Text = "School name entry:";
+            this.radLabel4.ThemeName = "ControlDefault";
             // 
             // radLabel5
             // 
@@ -121,6 +126,7 @@
             this.radLabel5.Size = new System.Drawing.Size(52, 18);
             this.radLabel5.TabIndex = 5;
             this.radLabel5.Text = "School 1:";
+            this.radLabel5.ThemeName = "ControlDefault";
             // 
             // radLabel6
             // 
@@ -129,6 +135,7 @@
             this.radLabel6.Size = new System.Drawing.Size(52, 18);
             this.radLabel6.TabIndex = 6;
             this.radLabel6.Text = "School 2:";
+            this.radLabel6.ThemeName = "ControlDefault";
             // 
             // radLabel7
             // 
@@ -137,6 +144,7 @@
             this.radLabel7.Size = new System.Drawing.Size(52, 18);
             this.radLabel7.TabIndex = 7;
             this.radLabel7.Text = "School 3:";
+            this.radLabel7.ThemeName = "ControlDefault";
             // 
             // radLabel8
             // 
@@ -145,6 +153,7 @@
             this.radLabel8.Size = new System.Drawing.Size(52, 18);
             this.radLabel8.TabIndex = 8;
             this.radLabel8.Text = "School 4:";
+            this.radLabel8.ThemeName = "ControlDefault";
             // 
             // radLabel9
             // 
@@ -153,59 +162,67 @@
             this.radLabel9.Size = new System.Drawing.Size(52, 18);
             this.radLabel9.TabIndex = 9;
             this.radLabel9.Text = "School 5:";
+            this.radLabel9.ThemeName = "ControlDefault";
             // 
             // cmbNumSchools
             // 
             this.cmbNumSchools.DropDownAnimationEnabled = true;
             this.cmbNumSchools.Location = new System.Drawing.Point(136, 56);
             this.cmbNumSchools.Name = "cmbNumSchools";
-            this.cmbNumSchools.Size = new System.Drawing.Size(154, 28);
+            this.cmbNumSchools.Size = new System.Drawing.Size(154, 24);
             this.cmbNumSchools.TabIndex = 10;
             this.cmbNumSchools.Text = "No of Schools";
+            this.cmbNumSchools.ThemeName = "ControlDefault";
             // 
             // cmbNumOptions
             // 
             this.cmbNumOptions.DropDownAnimationEnabled = true;
             this.cmbNumOptions.Location = new System.Drawing.Point(136, 89);
             this.cmbNumOptions.Name = "cmbNumOptions";
-            this.cmbNumOptions.Size = new System.Drawing.Size(156, 28);
+            this.cmbNumOptions.Size = new System.Drawing.Size(156, 24);
             this.cmbNumOptions.TabIndex = 11;
             this.cmbNumOptions.Text = "No of Options";
+            this.cmbNumOptions.ThemeName = "ControlDefault";
             // 
             // txtSchoolName1
             // 
             this.txtSchoolName1.Location = new System.Drawing.Point(136, 145);
             this.txtSchoolName1.Name = "txtSchoolName1";
-            this.txtSchoolName1.Size = new System.Drawing.Size(332, 28);
+            this.txtSchoolName1.Size = new System.Drawing.Size(332, 24);
             this.txtSchoolName1.TabIndex = 12;
+            this.txtSchoolName1.ThemeName = "ControlDefault";
             // 
             // txtSchoolName2
             // 
             this.txtSchoolName2.Location = new System.Drawing.Point(136, 179);
             this.txtSchoolName2.Name = "txtSchoolName2";
-            this.txtSchoolName2.Size = new System.Drawing.Size(332, 28);
+            this.txtSchoolName2.Size = new System.Drawing.Size(332, 24);
             this.txtSchoolName2.TabIndex = 13;
+            this.txtSchoolName2.ThemeName = "ControlDefault";
             // 
             // txtSchoolName3
             // 
             this.txtSchoolName3.Location = new System.Drawing.Point(136, 213);
             this.txtSchoolName3.Name = "txtSchoolName3";
-            this.txtSchoolName3.Size = new System.Drawing.Size(332, 28);
+            this.txtSchoolName3.Size = new System.Drawing.Size(332, 24);
             this.txtSchoolName3.TabIndex = 14;
+            this.txtSchoolName3.ThemeName = "ControlDefault";
             // 
             // txtSchoolName4
             // 
             this.txtSchoolName4.Location = new System.Drawing.Point(136, 247);
             this.txtSchoolName4.Name = "txtSchoolName4";
-            this.txtSchoolName4.Size = new System.Drawing.Size(332, 28);
+            this.txtSchoolName4.Size = new System.Drawing.Size(332, 24);
             this.txtSchoolName4.TabIndex = 15;
+            this.txtSchoolName4.ThemeName = "ControlDefault";
             // 
             // txtSchoolName5
             // 
             this.txtSchoolName5.Location = new System.Drawing.Point(136, 281);
             this.txtSchoolName5.Name = "txtSchoolName5";
-            this.txtSchoolName5.Size = new System.Drawing.Size(332, 28);
+            this.txtSchoolName5.Size = new System.Drawing.Size(332, 24);
             this.txtSchoolName5.TabIndex = 16;
+            this.txtSchoolName5.ThemeName = "ControlDefault";
             // 
             // btnStartQuiz
             // 
@@ -214,6 +231,7 @@
             this.btnStartQuiz.Size = new System.Drawing.Size(137, 30);
             this.btnStartQuiz.TabIndex = 17;
             this.btnStartQuiz.Text = "Start Quiz";
+            this.btnStartQuiz.ThemeName = "ControlDefault";
             // 
             // btnApplySettings
             // 
@@ -222,6 +240,7 @@
             this.btnApplySettings.Size = new System.Drawing.Size(137, 30);
             this.btnApplySettings.TabIndex = 18;
             this.btnApplySettings.Text = "Apply Settings";
+            this.btnApplySettings.ThemeName = "ControlDefault";
             // 
             // SetupForm
             // 
@@ -246,14 +265,15 @@
             this.Controls.Add(this.radLabel3);
             this.Controls.Add(this.radLabel2);
             this.Controls.Add(this.radLabel1);
-            this.Controls.Add(this.spinTimer);
+            this.Controls.Add(this.nudDurationSec);
             this.Name = "SetupForm";
             // 
             // 
             // 
             this.RootElement.ApplyShapeToControl = true;
             this.Text = "Quiz Configuration Panel";
-            ((System.ComponentModel.ISupportInitialize)(this.spinTimer)).EndInit();
+            this.ThemeName = "ControlDefault";
+            ((System.ComponentModel.ISupportInitialize)(this.nudDurationSec)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
@@ -280,7 +300,7 @@
 
         #endregion
 
-        private Telerik.WinControls.UI.RadSpinEditor spinTimer;
+        private Telerik.WinControls.UI.RadSpinEditor nudDurationSec;
         private Telerik.WinControls.UI.RadLabel radLabel1;
         private Telerik.WinControls.UI.RadLabel radLabel2;
         private Telerik.WinControls.UI.RadLabel radLabel3;

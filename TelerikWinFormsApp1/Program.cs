@@ -14,8 +14,13 @@ namespace TelerikWinFormsApp1
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            // Load persisted settings BEFORE any forms read QuizConfig
+            QuizConfig.Load();
+
+
             Application.Run(new MainForm());
-            //Application.Run(new CheckForm());
+            // Application.Run(new CheckForm());
            // Application.Run(new SetupForm());
         }
     }
