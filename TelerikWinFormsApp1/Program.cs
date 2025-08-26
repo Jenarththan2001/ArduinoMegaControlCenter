@@ -1,27 +1,32 @@
 ﻿using System;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace TelerikWinFormsApp1
 {
     internal static class Program
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
         [STAThread]
         static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            // Load persisted settings BEFORE any forms read QuizConfig
+            // Load saved settings (schools, duration, and also last COM/baud)
             QuizConfig.Load();
 
+            // 1) Start with CheckForm modally
+            using (var check = new CheckForm())
+            {
+                var result = check.ShowDialog();   // user connects and clicks “Go to Main”
+                if (result != DialogResult.OK)
+                {
+                    // user closed/cancelled => just exit app
+                    return;
+                }
+            }
 
+            // 2) Launch MainForm (now it will use saved COM/baud)
             Application.Run(new MainForm());
-            // Application.Run(new CheckForm());
-           // Application.Run(new SetupForm());
         }
     }
 }

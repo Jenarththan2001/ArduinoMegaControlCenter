@@ -47,6 +47,9 @@
             this.txtSchoolName5 = new Telerik.WinControls.UI.RadTextBox();
             this.btnStartQuiz = new Telerik.WinControls.UI.RadButton();
             this.btnApplySettings = new Telerik.WinControls.UI.RadButton();
+            this.telerikMetroTheme1 = new Telerik.WinControls.Themes.TelerikMetroTheme();
+            this.fluentTheme1 = new Telerik.WinControls.Themes.FluentTheme();
+            this.telerikMetroBlueTheme1 = new Telerik.WinControls.Themes.TelerikMetroBlueTheme();
             ((System.ComponentModel.ISupportInitialize)(this.nudDurationSec)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
@@ -81,88 +84,88 @@
             this.nudDurationSec.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.nudDurationSec.Size = new System.Drawing.Size(66, 24);
             this.nudDurationSec.TabIndex = 0;
-            this.nudDurationSec.ThemeName = "ControlDefault";
+            this.nudDurationSec.ThemeName = "TelerikMetroBlue";
             // 
             // radLabel1
             // 
             this.radLabel1.Location = new System.Drawing.Point(12, 17);
             this.radLabel1.Name = "radLabel1";
-            this.radLabel1.Size = new System.Drawing.Size(121, 18);
+            this.radLabel1.Size = new System.Drawing.Size(116, 15);
             this.radLabel1.TabIndex = 1;
             this.radLabel1.Text = "Timer duration (in sec):";
-            this.radLabel1.ThemeName = "ControlDefault";
+            this.radLabel1.ThemeName = "TelerikMetroBlue";
             // 
             // radLabel2
             // 
             this.radLabel2.Location = new System.Drawing.Point(12, 56);
             this.radLabel2.Name = "radLabel2";
-            this.radLabel2.Size = new System.Drawing.Size(103, 18);
+            this.radLabel2.Size = new System.Drawing.Size(98, 15);
             this.radLabel2.TabIndex = 2;
             this.radLabel2.Text = "Number of schools:";
-            this.radLabel2.ThemeName = "ControlDefault";
+            this.radLabel2.ThemeName = "TelerikMetroBlue";
             // 
             // radLabel3
             // 
             this.radLabel3.Location = new System.Drawing.Point(12, 92);
             this.radLabel3.Name = "radLabel3";
-            this.radLabel3.Size = new System.Drawing.Size(107, 18);
+            this.radLabel3.Size = new System.Drawing.Size(99, 15);
             this.radLabel3.TabIndex = 3;
             this.radLabel3.Text = "Number of options :";
-            this.radLabel3.ThemeName = "ControlDefault";
+            this.radLabel3.ThemeName = "TelerikMetroBlue";
             // 
             // radLabel4
             // 
             this.radLabel4.Location = new System.Drawing.Point(12, 126);
             this.radLabel4.Name = "radLabel4";
-            this.radLabel4.Size = new System.Drawing.Size(102, 18);
+            this.radLabel4.Size = new System.Drawing.Size(98, 15);
             this.radLabel4.TabIndex = 4;
             this.radLabel4.Text = "School name entry:";
-            this.radLabel4.ThemeName = "ControlDefault";
+            this.radLabel4.ThemeName = "TelerikMetroBlue";
             // 
             // radLabel5
             // 
             this.radLabel5.Location = new System.Drawing.Point(66, 150);
             this.radLabel5.Name = "radLabel5";
-            this.radLabel5.Size = new System.Drawing.Size(52, 18);
+            this.radLabel5.Size = new System.Drawing.Size(51, 15);
             this.radLabel5.TabIndex = 5;
             this.radLabel5.Text = "School 1:";
-            this.radLabel5.ThemeName = "ControlDefault";
+            this.radLabel5.ThemeName = "TelerikMetroBlue";
             // 
             // radLabel6
             // 
             this.radLabel6.Location = new System.Drawing.Point(66, 185);
             this.radLabel6.Name = "radLabel6";
-            this.radLabel6.Size = new System.Drawing.Size(52, 18);
+            this.radLabel6.Size = new System.Drawing.Size(51, 15);
             this.radLabel6.TabIndex = 6;
             this.radLabel6.Text = "School 2:";
-            this.radLabel6.ThemeName = "ControlDefault";
+            this.radLabel6.ThemeName = "TelerikMetroBlue";
             // 
             // radLabel7
             // 
             this.radLabel7.Location = new System.Drawing.Point(66, 221);
             this.radLabel7.Name = "radLabel7";
-            this.radLabel7.Size = new System.Drawing.Size(52, 18);
+            this.radLabel7.Size = new System.Drawing.Size(51, 15);
             this.radLabel7.TabIndex = 7;
             this.radLabel7.Text = "School 3:";
-            this.radLabel7.ThemeName = "ControlDefault";
+            this.radLabel7.ThemeName = "TelerikMetroBlue";
             // 
             // radLabel8
             // 
             this.radLabel8.Location = new System.Drawing.Point(66, 252);
             this.radLabel8.Name = "radLabel8";
-            this.radLabel8.Size = new System.Drawing.Size(52, 18);
+            this.radLabel8.Size = new System.Drawing.Size(51, 15);
             this.radLabel8.TabIndex = 8;
             this.radLabel8.Text = "School 4:";
-            this.radLabel8.ThemeName = "ControlDefault";
+            this.radLabel8.ThemeName = "TelerikMetroBlue";
             // 
             // radLabel9
             // 
             this.radLabel9.Location = new System.Drawing.Point(66, 282);
             this.radLabel9.Name = "radLabel9";
-            this.radLabel9.Size = new System.Drawing.Size(52, 18);
+            this.radLabel9.Size = new System.Drawing.Size(51, 15);
             this.radLabel9.TabIndex = 9;
             this.radLabel9.Text = "School 5:";
-            this.radLabel9.ThemeName = "ControlDefault";
+            this.radLabel9.ThemeName = "TelerikMetroBlue";
             // 
             // cmbNumSchools
             // 
@@ -172,7 +175,7 @@
             this.cmbNumSchools.Size = new System.Drawing.Size(154, 24);
             this.cmbNumSchools.TabIndex = 10;
             this.cmbNumSchools.Text = "No of Schools";
-            this.cmbNumSchools.ThemeName = "ControlDefault";
+            this.cmbNumSchools.ThemeName = "TelerikMetroBlue";
             // 
             // cmbNumOptions
             // 
@@ -182,7 +185,7 @@
             this.cmbNumOptions.Size = new System.Drawing.Size(156, 24);
             this.cmbNumOptions.TabIndex = 11;
             this.cmbNumOptions.Text = "No of Options";
-            this.cmbNumOptions.ThemeName = "ControlDefault";
+            this.cmbNumOptions.ThemeName = "TelerikMetroBlue";
             // 
             // txtSchoolName1
             // 
@@ -190,7 +193,7 @@
             this.txtSchoolName1.Name = "txtSchoolName1";
             this.txtSchoolName1.Size = new System.Drawing.Size(332, 24);
             this.txtSchoolName1.TabIndex = 12;
-            this.txtSchoolName1.ThemeName = "ControlDefault";
+            this.txtSchoolName1.ThemeName = "TelerikMetroBlue";
             // 
             // txtSchoolName2
             // 
@@ -198,7 +201,7 @@
             this.txtSchoolName2.Name = "txtSchoolName2";
             this.txtSchoolName2.Size = new System.Drawing.Size(332, 24);
             this.txtSchoolName2.TabIndex = 13;
-            this.txtSchoolName2.ThemeName = "ControlDefault";
+            this.txtSchoolName2.ThemeName = "TelerikMetroBlue";
             // 
             // txtSchoolName3
             // 
@@ -206,7 +209,7 @@
             this.txtSchoolName3.Name = "txtSchoolName3";
             this.txtSchoolName3.Size = new System.Drawing.Size(332, 24);
             this.txtSchoolName3.TabIndex = 14;
-            this.txtSchoolName3.ThemeName = "ControlDefault";
+            this.txtSchoolName3.ThemeName = "TelerikMetroBlue";
             // 
             // txtSchoolName4
             // 
@@ -214,7 +217,7 @@
             this.txtSchoolName4.Name = "txtSchoolName4";
             this.txtSchoolName4.Size = new System.Drawing.Size(332, 24);
             this.txtSchoolName4.TabIndex = 15;
-            this.txtSchoolName4.ThemeName = "ControlDefault";
+            this.txtSchoolName4.ThemeName = "TelerikMetroBlue";
             // 
             // txtSchoolName5
             // 
@@ -222,7 +225,7 @@
             this.txtSchoolName5.Name = "txtSchoolName5";
             this.txtSchoolName5.Size = new System.Drawing.Size(332, 24);
             this.txtSchoolName5.TabIndex = 16;
-            this.txtSchoolName5.ThemeName = "ControlDefault";
+            this.txtSchoolName5.ThemeName = "TelerikMetroBlue";
             // 
             // btnStartQuiz
             // 
@@ -231,7 +234,7 @@
             this.btnStartQuiz.Size = new System.Drawing.Size(137, 30);
             this.btnStartQuiz.TabIndex = 17;
             this.btnStartQuiz.Text = "Start Quiz";
-            this.btnStartQuiz.ThemeName = "ControlDefault";
+            this.btnStartQuiz.ThemeName = "TelerikMetroBlue";
             // 
             // btnApplySettings
             // 
@@ -240,7 +243,7 @@
             this.btnApplySettings.Size = new System.Drawing.Size(137, 30);
             this.btnApplySettings.TabIndex = 18;
             this.btnApplySettings.Text = "Apply Settings";
-            this.btnApplySettings.ThemeName = "ControlDefault";
+            this.btnApplySettings.ThemeName = "TelerikMetroBlue";
             // 
             // SetupForm
             // 
@@ -272,7 +275,7 @@
             // 
             this.RootElement.ApplyShapeToControl = true;
             this.Text = "Quiz Configuration Panel";
-            this.ThemeName = "ControlDefault";
+            this.ThemeName = "TelerikMetroBlue";
             ((System.ComponentModel.ISupportInitialize)(this.nudDurationSec)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
@@ -319,5 +322,8 @@
         private Telerik.WinControls.UI.RadTextBox txtSchoolName5;
         private Telerik.WinControls.UI.RadButton btnStartQuiz;
         private Telerik.WinControls.UI.RadButton btnApplySettings;
+        private Telerik.WinControls.Themes.TelerikMetroTheme telerikMetroTheme1;
+        private Telerik.WinControls.Themes.FluentTheme fluentTheme1;
+        private Telerik.WinControls.Themes.TelerikMetroBlueTheme telerikMetroBlueTheme1;
     }
 }

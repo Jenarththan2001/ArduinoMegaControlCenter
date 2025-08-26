@@ -59,6 +59,10 @@
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.cmbBaudRate = new System.Windows.Forms.ComboBox();
             this.radLabelElement1 = new Telerik.WinControls.UI.RadLabelElement();
+            this.btnMainform = new Telerik.WinControls.UI.RadButton();
+            this.telerikMetroTheme1 = new Telerik.WinControls.Themes.TelerikMetroTheme();
+            this.fluentTheme1 = new Telerik.WinControls.Themes.FluentTheme();
+            this.telerikMetroBlueTheme1 = new Telerik.WinControls.Themes.TelerikMetroBlueTheme();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblComPort)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnConnect)).BeginInit();
@@ -82,6 +86,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnSaveLogs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.statusStrip)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnMainform)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -89,10 +94,10 @@
             // 
             this.radLabel1.Location = new System.Drawing.Point(43, 27);
             this.radLabel1.Name = "radLabel1";
-            this.radLabel1.Size = new System.Drawing.Size(55, 18);
+            this.radLabel1.Size = new System.Drawing.Size(54, 15);
             this.radLabel1.TabIndex = 0;
             this.radLabel1.Text = "radLabel1";
-            this.radLabel1.ThemeName = "ControlDefault";
+            this.radLabel1.ThemeName = "TelerikMetroBlue";
             // 
             // lblComPort
             // 
@@ -102,7 +107,7 @@
             this.lblComPort.Size = new System.Drawing.Size(107, 21);
             this.lblComPort.TabIndex = 1;
             this.lblComPort.Text = "Select COM Port";
-            this.lblComPort.ThemeName = "ControlDefault";
+            this.lblComPort.ThemeName = "TelerikMetroBlue";
             // 
             // cmbComPorts
             // 
@@ -119,7 +124,7 @@
             this.btnConnect.Size = new System.Drawing.Size(137, 30);
             this.btnConnect.TabIndex = 3;
             this.btnConnect.Text = "Connect";
-            this.btnConnect.ThemeName = "ControlDefault";
+            this.btnConnect.ThemeName = "TelerikMetroBlue";
             // 
             // btnDisconnect
             // 
@@ -129,16 +134,16 @@
             this.btnDisconnect.Size = new System.Drawing.Size(137, 30);
             this.btnDisconnect.TabIndex = 4;
             this.btnDisconnect.Text = "Disconnect";
-            this.btnDisconnect.ThemeName = "ControlDefault";
+            this.btnDisconnect.ThemeName = "TelerikMetroBlue";
             // 
             // lblConnectionStatus
             // 
             this.lblConnectionStatus.Location = new System.Drawing.Point(697, 33);
             this.lblConnectionStatus.Name = "lblConnectionStatus";
-            this.lblConnectionStatus.Size = new System.Drawing.Size(74, 18);
+            this.lblConnectionStatus.Size = new System.Drawing.Size(71, 15);
             this.lblConnectionStatus.TabIndex = 5;
             this.lblConnectionStatus.Text = "Disconnected";
-            this.lblConnectionStatus.ThemeName = "ControlDefault";
+            this.lblConnectionStatus.ThemeName = "TelerikMetroBlue";
             // 
             // lstLogs
             // 
@@ -148,7 +153,7 @@
             this.lstLogs.Name = "lstLogs";
             this.lstLogs.Size = new System.Drawing.Size(745, 82);
             this.lstLogs.TabIndex = 6;
-            this.lstLogs.ThemeName = "ControlDefault";
+            this.lstLogs.ThemeName = "TelerikMetroBlue";
             // 
             // gridButtons
             // 
@@ -161,7 +166,7 @@
             this.gridButtons.Name = "gridButtons";
             this.gridButtons.Size = new System.Drawing.Size(745, 198);
             this.gridButtons.TabIndex = 7;
-            this.gridButtons.ThemeName = "ControlDefault";
+            this.gridButtons.ThemeName = "TelerikMetroBlue";
             // 
             // btnClearLogs
             // 
@@ -170,7 +175,7 @@
             this.btnClearLogs.Size = new System.Drawing.Size(137, 30);
             this.btnClearLogs.TabIndex = 8;
             this.btnClearLogs.Text = "Clear Logs";
-            this.btnClearLogs.ThemeName = "ControlDefault";
+            this.btnClearLogs.ThemeName = "TelerikMetroBlue";
             // 
             // btnReset
             // 
@@ -179,7 +184,7 @@
             this.btnReset.Size = new System.Drawing.Size(137, 30);
             this.btnReset.TabIndex = 9;
             this.btnReset.Text = "Send RESET";
-            this.btnReset.ThemeName = "ControlDefault";
+            this.btnReset.ThemeName = "TelerikMetroBlue";
             // 
             // btnBuzzerCheck
             // 
@@ -188,7 +193,7 @@
             this.btnBuzzerCheck.Size = new System.Drawing.Size(137, 30);
             this.btnBuzzerCheck.TabIndex = 12;
             this.btnBuzzerCheck.Text = "Test Buzzer";
-            this.btnBuzzerCheck.ThemeName = "ControlDefault";
+            this.btnBuzzerCheck.ThemeName = "TelerikMetroBlue";
             // 
             // lblResetButtonStatus
             // 
@@ -198,7 +203,7 @@
             this.lblResetButtonStatus.Size = new System.Drawing.Size(172, 19);
             this.lblResetButtonStatus.TabIndex = 13;
             this.lblResetButtonStatus.Text = "Operator Reset: NOT PRESSED";
-            this.lblResetButtonStatus.ThemeName = "ControlDefault";
+            this.lblResetButtonStatus.ThemeName = "TelerikMetroBlue";
             // 
             // btnTeam1Led
             // 
@@ -207,7 +212,7 @@
             this.btnTeam1Led.Size = new System.Drawing.Size(137, 30);
             this.btnTeam1Led.TabIndex = 0;
             this.btnTeam1Led.Text = "LED 1";
-            this.btnTeam1Led.ThemeName = "ControlDefault";
+            this.btnTeam1Led.ThemeName = "TelerikMetroBlue";
             // 
             // btnTeam2Led
             // 
@@ -216,7 +221,7 @@
             this.btnTeam2Led.Size = new System.Drawing.Size(137, 30);
             this.btnTeam2Led.TabIndex = 1;
             this.btnTeam2Led.Text = "LED 2";
-            this.btnTeam2Led.ThemeName = "ControlDefault";
+            this.btnTeam2Led.ThemeName = "TelerikMetroBlue";
             // 
             // btnTeam3Led
             // 
@@ -225,7 +230,7 @@
             this.btnTeam3Led.Size = new System.Drawing.Size(137, 30);
             this.btnTeam3Led.TabIndex = 2;
             this.btnTeam3Led.Text = "LED 3";
-            this.btnTeam3Led.ThemeName = "ControlDefault";
+            this.btnTeam3Led.ThemeName = "TelerikMetroBlue";
             // 
             // btnTeam4Led
             // 
@@ -234,7 +239,7 @@
             this.btnTeam4Led.Size = new System.Drawing.Size(137, 30);
             this.btnTeam4Led.TabIndex = 3;
             this.btnTeam4Led.Text = "LED 4";
-            this.btnTeam4Led.ThemeName = "ControlDefault";
+            this.btnTeam4Led.ThemeName = "TelerikMetroBlue";
             // 
             // btnTeam5Led
             // 
@@ -243,25 +248,25 @@
             this.btnTeam5Led.Size = new System.Drawing.Size(137, 30);
             this.btnTeam5Led.TabIndex = 4;
             this.btnTeam5Led.Text = "LED 5";
-            this.btnTeam5Led.ThemeName = "ControlDefault";
+            this.btnTeam5Led.ThemeName = "TelerikMetroBlue";
             // 
             // chkTestMode
             // 
             this.chkTestMode.Location = new System.Drawing.Point(26, 426);
             this.chkTestMode.Name = "chkTestMode";
-            this.chkTestMode.Size = new System.Drawing.Size(146, 18);
+            this.chkTestMode.Size = new System.Drawing.Size(159, 17);
             this.chkTestMode.TabIndex = 1;
             this.chkTestMode.Text = "Enable Button Test Mode";
-            this.chkTestMode.ThemeName = "ControlDefault";
+            this.chkTestMode.ThemeName = "TelerikMetroBlue";
             // 
             // chkLiveMonitor
             // 
             this.chkLiveMonitor.Location = new System.Drawing.Point(27, 172);
             this.chkLiveMonitor.Name = "chkLiveMonitor";
-            this.chkLiveMonitor.Size = new System.Drawing.Size(83, 18);
+            this.chkLiveMonitor.Size = new System.Drawing.Size(90, 17);
             this.chkLiveMonitor.TabIndex = 2;
             this.chkLiveMonitor.Text = "Live Monitor";
-            this.chkLiveMonitor.ThemeName = "ControlDefault";
+            this.chkLiveMonitor.ThemeName = "TelerikMetroBlue";
             // 
             // btnRefreshPorts
             // 
@@ -270,7 +275,7 @@
             this.btnRefreshPorts.Size = new System.Drawing.Size(137, 30);
             this.btnRefreshPorts.TabIndex = 13;
             this.btnRefreshPorts.Text = "Refresh COM Ports";
-            this.btnRefreshPorts.ThemeName = "ControlDefault";
+            this.btnRefreshPorts.ThemeName = "TelerikMetroBlue";
             // 
             // btnSaveLogs
             // 
@@ -279,7 +284,7 @@
             this.btnSaveLogs.Size = new System.Drawing.Size(137, 30);
             this.btnSaveLogs.TabIndex = 14;
             this.btnSaveLogs.Text = "Save Logs";
-            this.btnSaveLogs.ThemeName = "ControlDefault";
+            this.btnSaveLogs.ThemeName = "TelerikMetroBlue";
             // 
             // statusStrip
             // 
@@ -287,12 +292,12 @@
             this.lblComStatus,
             this.lblLastMsg,
             this.lblTimestamp});
-            this.statusStrip.Location = new System.Drawing.Point(0, 584);
+            this.statusStrip.Location = new System.Drawing.Point(0, 585);
             this.statusStrip.Margin = new System.Windows.Forms.Padding(5);
             this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(807, 26);
+            this.statusStrip.Size = new System.Drawing.Size(807, 25);
             this.statusStrip.TabIndex = 15;
-            this.statusStrip.ThemeName = "ControlDefault";
+            this.statusStrip.ThemeName = "TelerikMetroBlue";
             // 
             // lblComStatus
             // 
@@ -324,7 +329,7 @@
             this.radLabel2.Size = new System.Drawing.Size(68, 21);
             this.radLabel2.TabIndex = 2;
             this.radLabel2.Text = "Baud Rate";
-            this.radLabel2.ThemeName = "ControlDefault";
+            this.radLabel2.ThemeName = "TelerikMetroBlue";
             // 
             // cmbBaudRate
             // 
@@ -341,11 +346,22 @@
             this.radLabelElement1.TextWrap = true;
             this.radLabelElement1.UseCompatibleTextRendering = false;
             // 
+            // btnMainform
+            // 
+            this.btnMainform.Location = new System.Drawing.Point(496, 481);
+            this.btnMainform.Name = "btnMainform";
+            this.btnMainform.Size = new System.Drawing.Size(275, 30);
+            this.btnMainform.TabIndex = 10;
+            this.btnMainform.Text = "Go To Quiz Panel";
+            this.btnMainform.ThemeName = "TelerikMetroBlue";
+            this.btnMainform.Click += new System.EventHandler(this.btnMainform_Click);
+            // 
             // CheckForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(807, 610);
+            this.Controls.Add(this.btnMainform);
             this.Controls.Add(this.cmbBaudRate);
             this.Controls.Add(this.radLabel2);
             this.Controls.Add(this.statusStrip);
@@ -376,7 +392,7 @@
             // 
             this.RootElement.ApplyShapeToControl = true;
             this.Text = "Check Form";
-            this.ThemeName = "ControlDefault";
+            this.ThemeName = "TelerikMetroBlue";
             this.Load += new System.EventHandler(this.CheckForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblComPort)).EndInit();
@@ -401,6 +417,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnSaveLogs)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.statusStrip)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnMainform)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -438,5 +455,9 @@
         private Telerik.WinControls.UI.RadLabel radLabel2;
         private System.Windows.Forms.ComboBox cmbBaudRate;
         private Telerik.WinControls.UI.RadLabelElement radLabelElement1;
+        private Telerik.WinControls.UI.RadButton btnMainform;
+        private Telerik.WinControls.Themes.TelerikMetroTheme telerikMetroTheme1;
+        private Telerik.WinControls.Themes.FluentTheme fluentTheme1;
+        private Telerik.WinControls.Themes.TelerikMetroBlueTheme telerikMetroBlueTheme1;
     }
 }

@@ -3,7 +3,6 @@ using Newtonsoft.Json; // Install-Package Newtonsoft.Json
 using System;
 using System.IO;
 using System.Linq;
-using System.Xml;
 
 namespace TelerikWinFormsApp1
 {
@@ -16,6 +15,10 @@ namespace TelerikWinFormsApp1
         public static string[] SchoolNames { get; private set; } =
             new[] { "School1", "School2", "School3", "School4", "School5" };
 
+        // Serial prefs (shared across forms)
+        public static string SelectedPort { get; set; } = "";
+        public static int BaudRate { get; set; } = 9600;
+
         // ====== Persistence ======
         private class PersistModel
         {
@@ -23,6 +26,8 @@ namespace TelerikWinFormsApp1
             public int NumSchools { get; set; }
             public int NumOptions { get; set; }
             public string[] SchoolNames { get; set; }
+            public string SelectedPort { get; set; }
+            public int BaudRate { get; set; }
         }
 
         // %AppData%\TelerikWinFormsApp1\quizsettings.json
@@ -43,20 +48,19 @@ namespace TelerikWinFormsApp1
 
                 var json = File.ReadAllText(ConfigPath);
                 var data = JsonConvert.DeserializeObject<PersistModel>(json);
-
                 if (data == null) return;
 
                 QuestionDurationSec = Math.Max(0, data.QuestionDurationSec);
                 NumSchools = Clamp(data.NumSchools, 2, 5);
                 NumOptions = Clamp(data.NumOptions, 3, 5);
+                SetSchoolNames(data.SchoolNames ?? Array.Empty<string>());
 
-                // normalize school names length = 5
-                var names = data.SchoolNames ?? Array.Empty<string>();
-                SetSchoolNames(names);
+                SelectedPort = data.SelectedPort ?? "";
+                BaudRate = data.BaudRate <= 0 ? 9600 : data.BaudRate;
             }
             catch
             {
-                // swallow errors: stick with defaults if something goes wrong
+                // swallow errors: keep defaults
             }
         }
 
@@ -70,14 +74,16 @@ namespace TelerikWinFormsApp1
                     QuestionDurationSec = QuestionDurationSec,
                     NumSchools = Clamp(NumSchools, 2, 5),
                     NumOptions = Clamp(NumOptions, 3, 5),
-                    SchoolNames = NormalizeNames(SchoolNames)
+                    SchoolNames = NormalizeNames(SchoolNames),
+                    SelectedPort = SelectedPort ?? "",
+                    BaudRate = BaudRate <= 0 ? 9600 : BaudRate
                 };
                 var json = JsonConvert.SerializeObject(data, Newtonsoft.Json.Formatting.Indented);
                 File.WriteAllText(ConfigPath, json);
             }
             catch
             {
-                // ignore write errors to avoid crashing UI
+                // ignore write errors
             }
         }
 
@@ -88,7 +94,6 @@ namespace TelerikWinFormsApp1
 
         public static char[] GetOptionLetters()
         {
-            // Returns ['A','B','C']..['A'..'E'] based on NumOptions
             int n = Clamp(NumOptions, 3, 5);
             return Enumerable.Range(0, n).Select(i => (char)('A' + i)).ToArray();
         }

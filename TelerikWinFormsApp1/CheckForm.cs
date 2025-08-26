@@ -347,6 +347,11 @@ namespace TelerikWinFormsApp1
                 serialPort.DataReceived -= SerialPort_DataReceived;
                 serialPort.DataReceived += SerialPort_DataReceived;
 
+                // >>> Save the chosen connection so MainForm can reuse it
+                QuizConfig.SelectedPort = selectedPort;
+                QuizConfig.BaudRate = baud;
+                QuizConfig.Save();
+
                 Debug.WriteLine($"SUCCESS: Opened {selectedPort} @ {baud}");
                 AppendLog($"[Connected {selectedPort} @ {baud}]");
                 SetUiConnected(true);
@@ -780,5 +785,56 @@ namespace TelerikWinFormsApp1
                 }
             }
         }
+
+        private void btnMainform_Click(object sender, EventArgs e)
+        {
+            // 1) Block if not connected
+            if (!serialPort.IsOpen)
+            {
+                RadMessageBox.Show(this,
+                    "Please connect to the Arduino first.",
+                    "Serial not connected",
+                    MessageBoxButtons.OK,
+                    RadMessageIcon.Info);
+                return;
+            }
+
+            // 2) Persist COM & baud for MainForm to use
+            QuizConfig.SelectedPort = serialPort.PortName;
+            QuizConfig.BaudRate = serialPort.BaudRate;
+            QuizConfig.Save();
+
+            // 3) Debug confirmation
+            System.Diagnostics.Debug.WriteLine(
+                $"[CHECKFORM ➜ MAIN] Saved Serial → Port={QuizConfig.SelectedPort}, Baud={QuizConfig.BaudRate}");
+
+            // 4) Clean up local serial (MainForm will reopen with saved settings)
+            try
+            {
+                serialPort.DataReceived -= SerialPort_DataReceived;
+                serialPort.Close();
+            }
+            catch { /* ignore */ }
+
+            // 5) Navigate to MainForm and close CheckForm
+            if (this.Modal)
+            {
+                // If CheckForm was shown with ShowDialog (recommended startup pattern),
+                // signal Program.cs to continue by returning OK instead of instantiating MainForm here.
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            }
+            else
+            {
+                // If CheckForm is modeless, open (or focus) a MainForm yourself.
+                var main = Application.OpenForms.OfType<MainForm>().FirstOrDefault();
+                if (main == null || main.IsDisposed) main = new MainForm();
+
+                main.Show();
+                main.BringToFront();
+                this.Close(); // close CheckForm
+            }
+        }
+
     }
 }

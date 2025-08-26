@@ -75,13 +75,12 @@ namespace TelerikWinFormsApp1
             };
 
             // Export (CSV via this handler)
-            btnExportPDF.Click += btnExportPDF_Click;
-
-            // Serial reconnect attempts
-            _reconnectTimer.Tick += (s, e) => TryOpenFirstPort();
+            btnExportCSV.Click += btnExportPDF_Click;
 
             // Serial received
             _serial.DataReceived += Serial_DataReceived;
+
+            this.Activated += (s, e) => { if (!_serial.IsOpen) TryOpenPreferredPort(); };
 
         }
 
@@ -100,35 +99,55 @@ namespace TelerikWinFormsApp1
             _serial.ReadTimeout = 1000;
             _serial.WriteTimeout = 2000;
 
-            TryOpenFirstPort();
+            TryOpenPreferredPort();;
         }
 
         // =========================
         // Serial helpers
         // =========================
-        private void TryOpenFirstPort()
+        private void TryOpenPreferredPort()
         {
             if (_serial.IsOpen) return;
 
+            // Use saved settings
+            string preferredPort = QuizConfig.SelectedPort ?? "";
+            int baud = QuizConfig.BaudRate <= 0 ? 9600 : QuizConfig.BaudRate;
+
+            // Gather current ports
+            var ports = SerialPort.GetPortNames().OrderBy(p => p).ToArray();
+            if (ports.Length == 0)
+            {
+                _reconnectTimer.Start(); // try again later
+                return;
+            }
+
+            // Pick preferred if available; else first available
+            string portToUse = ports.FirstOrDefault(p =>
+                !string.IsNullOrEmpty(preferredPort) && p.Equals(preferredPort, StringComparison.OrdinalIgnoreCase))
+                ?? ports.First();
+
+            // Apply config
+            _serial.PortName = portToUse;
+            _serial.BaudRate = baud;
+            _serial.Parity = Parity.None;
+            _serial.DataBits = 8;
+            _serial.StopBits = StopBits.One;
+            _serial.Handshake = Handshake.None;
+            _serial.NewLine = "\n";
+            _serial.ReadTimeout = 1000;
+            _serial.WriteTimeout = 2000;
+
             try
             {
-                var name = SerialPort.GetPortNames().OrderBy(p => p).FirstOrDefault();
-                if (string.IsNullOrEmpty(name))
-                {
-                    _reconnectTimer.Start(); // no ports—try again later
-                    return;
-                }
-
-                _serial.PortName = name;
                 _serial.Open();
                 _reconnectTimer.Stop();
             }
             catch
             {
-                // Couldn’t open—retry later
-                _reconnectTimer.Start();
+                _reconnectTimer.Start(); // retry later
             }
         }
+
 
         private void SafeCloseSerial()
         {
@@ -379,12 +398,12 @@ namespace TelerikWinFormsApp1
 
             if (!running)
             {
-                lblTimer.ForeColor = Color.Blue;
+                lblTimer.ForeColor = Color.Red;
                 lblTimer.Font = new Font(lblTimer.Font, FontStyle.Regular);
             }
-            else if (remainingSec == 0)
+            else if (remainingSec < 10)
             {
-                lblTimer.ForeColor = Color.Red;
+                lblTimer.ForeColor = Color.Orange;
                 lblTimer.Font = new Font(lblTimer.Font, FontStyle.Bold);
             }
             else
@@ -490,5 +509,6 @@ namespace TelerikWinFormsApp1
             var check = new CheckForm();
             check.Show(this);
         }
+
     }
 }
