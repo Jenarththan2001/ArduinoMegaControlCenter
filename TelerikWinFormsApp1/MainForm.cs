@@ -1,6 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
-using System.IO;                 // <-- for File.WriteAllText
+using System.IO;                 // File.WriteAllText
 using System.IO.Ports;
 using System.Linq;
 using System.Text;
@@ -14,7 +14,7 @@ namespace TelerikWinFormsApp1
 {
     public partial class MainForm : Telerik.WinControls.UI.RadForm
     {
-        // ===== Singleton (optional; useful if other forms ever need to call in) =====
+        // ===== Singleton (optional) =====
         public static MainForm Instance { get; private set; }
 
         // ===== Serial =====
@@ -26,6 +26,10 @@ namespace TelerikWinFormsApp1
         private readonly Timer _questionTimer = new Timer { Interval = 1000 }; // 1s tick
         private DateTime? _questionStartUtc = null;
         private int DurationSec => Math.Max(0, QuizConfig.QuestionDurationSec);
+        private bool IsTimerRunning => _questionStartUtc != null && _questionTimer.Enabled;
+
+        // Reveal button state (manual toggle for a plain RadButton)
+        private bool _revealNow = false;
 
         // Track whether a team (1..5) has already answered this question
         private readonly bool[] _answered = new bool[6]; // index 0 unused
@@ -48,9 +52,13 @@ namespace TelerikWinFormsApp1
 
         // Grid columns (live leaderboard)
         private const string COL_SCHOOL = "School";
-        private const string COL_OPTION = "Option";
+        private const string COL_OPTION = "Option";      // visible (masked during timer)
         private const string COL_TIME = "Time";
-        private const string COL_MS = "ElapsedMs"; // hidden numeric for sort
+        private const string COL_MS = "ElapsedMs";       // hidden numeric for sort
+        private const string COL_OPT_RAW = "OptionRaw";  // hidden: real option stored here
+
+        // Mask shown on projector while timer is running
+        private const string MASK_OPTION = "—";
 
         public MainForm()
         {
@@ -67,21 +75,25 @@ namespace TelerikWinFormsApp1
             // Countdown
             _questionTimer.Tick += (s, e) => OnTimerTick();
 
-            // Reset button
-            btnResetTimer.Click += (s, e) =>
-            {
-                ClearAllAnswers();
-                StartQuestionNow();
-            };
+            // Reset button (CHANGED: send RESET to Arduino)
+            btnResetTimer.Click += (s, e) => SendResetToDevice();
 
             // Export (CSV via this handler)
-            btnExportCSV.Click += btnExportPDF_Click;
+            btnExportCSV.Click += btnExportCSV_Click;
 
             // Serial received
             _serial.DataReceived += Serial_DataReceived;
 
+            // Try opening the preferred port when returning from CheckForm
             this.Activated += (s, e) => { if (!_serial.IsOpen) TryOpenPreferredPort(); };
 
+            // Reveal button toggles a boolean; then we re-apply the masking to the grid
+            RevealAnsBtn.Click += (s, e) =>
+            {
+                _revealNow = !_revealNow;
+                UpdateRevealButtonUI();
+                ApplyOptionMaskingForAllRows();
+            };
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -89,8 +101,7 @@ namespace TelerikWinFormsApp1
             BuildLeaderboardGrid();
             UpdateTimerLabel(DurationSec, running: false);
 
-            // Minimal serial setup (9600 baud, first available port)
-            _serial.BaudRate = 9600;
+            // Minimal serial setup (other fields are set in TryOpenPreferredPort)
             _serial.Parity = Parity.None;
             _serial.DataBits = 8;
             _serial.StopBits = StopBits.One;
@@ -99,7 +110,32 @@ namespace TelerikWinFormsApp1
             _serial.ReadTimeout = 1000;
             _serial.WriteTimeout = 2000;
 
-            TryOpenPreferredPort();;
+            UpdateRevealButtonUI();
+            TryOpenPreferredPort();
+        }
+
+        // =========================
+        // NEW: Send RESET to Arduino (LEDs off) with safe fallback
+        // =========================
+        private void SendResetToDevice()
+        {
+            // If serial is available, ask Arduino to reset (it will turn LEDs off and echo "RESET")
+            if (_serial != null && _serial.IsOpen)
+            {
+                try
+                {
+                    _serial.Write("RESET\n");
+                    return; // ProcessLine("RESET") will handle UI clear + start
+                }
+                catch
+                {
+                    // fall through to local reset if write fails
+                }
+            }
+
+            // Fallback (device not connected or write failed): locally clear & start
+            ClearAllAnswers();
+            StartQuestionNow();
         }
 
         // =========================
@@ -109,11 +145,10 @@ namespace TelerikWinFormsApp1
         {
             if (_serial.IsOpen) return;
 
-            // Use saved settings
+            // Use saved settings from CheckForm
             string preferredPort = QuizConfig.SelectedPort ?? "";
             int baud = QuizConfig.BaudRate <= 0 ? 9600 : QuizConfig.BaudRate;
 
-            // Gather current ports
             var ports = SerialPort.GetPortNames().OrderBy(p => p).ToArray();
             if (ports.Length == 0)
             {
@@ -121,21 +156,14 @@ namespace TelerikWinFormsApp1
                 return;
             }
 
-            // Pick preferred if available; else first available
-            string portToUse = ports.FirstOrDefault(p =>
-                !string.IsNullOrEmpty(preferredPort) && p.Equals(preferredPort, StringComparison.OrdinalIgnoreCase))
+            string portToUse =
+                ports.FirstOrDefault(p =>
+                    !string.IsNullOrEmpty(preferredPort) &&
+                    p.Equals(preferredPort, StringComparison.OrdinalIgnoreCase))
                 ?? ports.First();
 
-            // Apply config
             _serial.PortName = portToUse;
             _serial.BaudRate = baud;
-            _serial.Parity = Parity.None;
-            _serial.DataBits = 8;
-            _serial.StopBits = StopBits.One;
-            _serial.Handshake = Handshake.None;
-            _serial.NewLine = "\n";
-            _serial.ReadTimeout = 1000;
-            _serial.WriteTimeout = 2000;
 
             try
             {
@@ -147,7 +175,6 @@ namespace TelerikWinFormsApp1
                 _reconnectTimer.Start(); // retry later
             }
         }
-
 
         private void SafeCloseSerial()
         {
@@ -178,7 +205,6 @@ namespace TelerikWinFormsApp1
                     {
                         string line = _rxBuf.ToString(0, nl).Trim();
                         _rxBuf.Remove(0, nl + 1);
-
                         if (line.Length == 0) continue;
 
                         // Bounce to UI thread
@@ -282,6 +308,7 @@ namespace TelerikWinFormsApp1
                 ReadOnly = true
             });
 
+            // Visible option column (masked while timer runs)
             mt.Columns.Add(new GridViewTextBoxColumn(COL_OPTION)
             {
                 HeaderText = "Option",
@@ -303,6 +330,13 @@ namespace TelerikWinFormsApp1
                 ReadOnly = true
             });
 
+            // Hidden column to store the real option until reveal
+            mt.Columns.Add(new GridViewTextBoxColumn(COL_OPT_RAW)
+            {
+                IsVisible = false,
+                ReadOnly = true
+            });
+
             gridLeaderboard.Rows.Clear();
 
             // Sort fastest first (lowest ms), then school name
@@ -319,6 +353,8 @@ namespace TelerikWinFormsApp1
 
         /// <summary>
         /// Locks in ONLY the first answer per team and displays + stores it.
+        /// While timer runs, mask the visible Option and store the real option in a hidden column,
+        /// unless _revealNow is ON.
         /// </summary>
         private void RegisterFirstAnswer(int teamIndex, char option)
         {
@@ -336,9 +372,15 @@ namespace TelerikWinFormsApp1
             // Live grid row
             var row = gridLeaderboard.Rows.AddNew();
             row.Cells[COL_SCHOOL].Value = TeamName(teamIndex);
-            row.Cells[COL_OPTION].Value = option.ToString();
             row.Cells[COL_TIME].Value = FormatSpan(elapsed);
             row.Cells[COL_MS].Value = ms;
+
+            // Store the real option hidden, show masked/real depending on state
+            string real = option.ToString();
+            row.Cells[COL_OPT_RAW].Value = real;
+
+            bool showRealNow = _revealNow || !IsTimerRunning;
+            row.Cells[COL_OPTION].Value = showRealNow ? real : MASK_OPTION;
 
             _answered[teamIndex] = true;
 
@@ -347,7 +389,7 @@ namespace TelerikWinFormsApp1
             {
                 Question = _questionIndex == 0 ? 1 : _questionIndex, // safety
                 School = TeamName(teamIndex),
-                Option = option.ToString(),
+                Option = real,
                 Time = FormatSpan(elapsed),
                 Utc = DateTime.UtcNow,
                 ElapsedMs = ms
@@ -360,6 +402,41 @@ namespace TelerikWinFormsApp1
             mt.SortDescriptors.Add(new SortDescriptor(COL_SCHOOL, ListSortDirection.Ascending));
         }
 
+        // Apply masking or reveal for all rows based on _revealNow / timer running
+        private void ApplyOptionMaskingForAllRows()
+        {
+            foreach (var row in gridLeaderboard.Rows)
+            {
+                var real = row.Cells[COL_OPT_RAW].Value?.ToString() ?? "";
+                if (string.IsNullOrEmpty(real)) continue;
+
+                bool showRealNow = _revealNow || !IsTimerRunning;
+                row.Cells[COL_OPTION].Value = showRealNow ? real : MASK_OPTION;
+            }
+        }
+
+        // Force reveal at time up
+        private void RevealOptionsForCurrentQuestion()
+        {
+            _revealNow = true;
+            UpdateRevealButtonUI();
+            ApplyOptionMaskingForAllRows();
+        }
+
+        // Small helper to color / text the Reveal button
+        private void UpdateRevealButtonUI()
+        {
+            RevealAnsBtn.Text = _revealNow ? "Reveal: ON" : "Reveal: OFF";
+            RevealAnsBtn.ButtonElement.ForeColor = Color.White;
+
+            var fill = RevealAnsBtn.ButtonElement?.ButtonFillElement;
+            if (fill != null)
+            {
+                fill.GradientStyle = Telerik.WinControls.GradientStyles.Solid;
+                fill.BackColor = _revealNow ? Color.ForestGreen : Color.White;
+            }
+        }
+
         // =========================
         // Timer
         // =========================
@@ -368,6 +445,11 @@ namespace TelerikWinFormsApp1
             _questionIndex++; // new question #
             _questionStartUtc = DateTime.UtcNow;
             _questionTimer.Start();
+
+            _revealNow = false;                // start masked by default
+            UpdateRevealButtonUI();
+            ApplyOptionMaskingForAllRows();
+
             UpdateTimerLabel(DurationSec, running: true);
         }
 
@@ -386,6 +468,9 @@ namespace TelerikWinFormsApp1
             {
                 remaining = 0;
                 _questionTimer.Stop();
+
+                // Time’s up → reveal options
+                RevealOptionsForCurrentQuestion();
             }
             UpdateTimerLabel(remaining, running: remaining > 0);
         }
@@ -418,15 +503,18 @@ namespace TelerikWinFormsApp1
             for (int i = 1; i <= 5; i++) _answered[i] = false;
             gridLeaderboard.Rows.Clear();
             _questionStartUtc = null;
+
+            _revealNow = false;
+            UpdateRevealButtonUI();
+
             UpdateTimerLabel(DurationSec, running: false);
         }
 
         // =========================
         // Export CSV (all questions)
         // =========================
-        private void btnExportPDF_Click(object sender, EventArgs e)
+        private void btnExportCSV_Click(object sender, EventArgs e)
         {
-            // Reuse existing button, but export CSV instead of PDF
             if (_history.Count == 0)
             {
                 RadMessageBox.Show(this, "Nothing to export yet.", "Export CSV",
@@ -508,6 +596,11 @@ namespace TelerikWinFormsApp1
         {
             var check = new CheckForm();
             check.Show(this);
+        }
+
+        private void MainForm_Load_1(object sender, EventArgs e)
+        {
+
         }
 
     }

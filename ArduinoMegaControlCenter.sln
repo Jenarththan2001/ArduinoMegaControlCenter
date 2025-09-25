@@ -5,6 +5,10 @@ VisualStudioVersion = 17.14.36301.6
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArduinoMegaControlCenter", "TelerikWinFormsApp1\ArduinoMegaControlCenter.csproj", "{A45D691C-A875-436F-8303-33B1BE883C4A}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "QuizSetup", "QuizSetup\QuizSetup.vdproj", "{DF3DD226-28DA-18AD-E54C-4EC0E56B146D}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "CEES Quiz", "CEES Quiz\CEES Quiz.vdproj", "{F2CD68B8-E74C-E891-76D5-0608041B79DE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -15,6 +19,10 @@ Global
 		{A45D691C-A875-436F-8303-33B1BE883C4A}.Debug|x86.Build.0 = Debug|x86
 		{A45D691C-A875-436F-8303-33B1BE883C4A}.Release|x86.ActiveCfg = Release|x86
 		{A45D691C-A875-436F-8303-33B1BE883C4A}.Release|x86.Build.0 = Release|x86
+		{DF3DD226-28DA-18AD-E54C-4EC0E56B146D}.Debug|x86.ActiveCfg = Debug
+		{DF3DD226-28DA-18AD-E54C-4EC0E56B146D}.Release|x86.ActiveCfg = Release
+		{F2CD68B8-E74C-E891-76D5-0608041B79DE}.Debug|x86.ActiveCfg = Debug
+		{F2CD68B8-E74C-E891-76D5-0608041B79DE}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

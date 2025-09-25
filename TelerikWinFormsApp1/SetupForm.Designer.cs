@@ -82,7 +82,7 @@
             0});
             this.nudDurationSec.Name = "nudDurationSec";
             this.nudDurationSec.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.nudDurationSec.Size = new System.Drawing.Size(66, 24);
+            this.nudDurationSec.Size = new System.Drawing.Size(66, 28);
             this.nudDurationSec.TabIndex = 0;
             this.nudDurationSec.ThemeName = "TelerikMetroBlue";
             // 
@@ -172,7 +172,7 @@
             this.cmbNumSchools.DropDownAnimationEnabled = true;
             this.cmbNumSchools.Location = new System.Drawing.Point(136, 56);
             this.cmbNumSchools.Name = "cmbNumSchools";
-            this.cmbNumSchools.Size = new System.Drawing.Size(154, 24);
+            this.cmbNumSchools.Size = new System.Drawing.Size(154, 28);
             this.cmbNumSchools.TabIndex = 10;
             this.cmbNumSchools.Text = "No of Schools";
             this.cmbNumSchools.ThemeName = "TelerikMetroBlue";
@@ -182,7 +182,7 @@
             this.cmbNumOptions.DropDownAnimationEnabled = true;
             this.cmbNumOptions.Location = new System.Drawing.Point(136, 89);
             this.cmbNumOptions.Name = "cmbNumOptions";
-            this.cmbNumOptions.Size = new System.Drawing.Size(156, 24);
+            this.cmbNumOptions.Size = new System.Drawing.Size(156, 28);
             this.cmbNumOptions.TabIndex = 11;
             this.cmbNumOptions.Text = "No of Options";
             this.cmbNumOptions.ThemeName = "TelerikMetroBlue";
@@ -191,7 +191,7 @@
             // 
             this.txtSchoolName1.Location = new System.Drawing.Point(136, 145);
             this.txtSchoolName1.Name = "txtSchoolName1";
-            this.txtSchoolName1.Size = new System.Drawing.Size(332, 24);
+            this.txtSchoolName1.Size = new System.Drawing.Size(332, 28);
             this.txtSchoolName1.TabIndex = 12;
             this.txtSchoolName1.ThemeName = "TelerikMetroBlue";
             // 
@@ -199,7 +199,7 @@
             // 
             this.txtSchoolName2.Location = new System.Drawing.Point(136, 179);
             this.txtSchoolName2.Name = "txtSchoolName2";
-            this.txtSchoolName2.Size = new System.Drawing.Size(332, 24);
+            this.txtSchoolName2.Size = new System.Drawing.Size(332, 28);
             this.txtSchoolName2.TabIndex = 13;
             this.txtSchoolName2.ThemeName = "TelerikMetroBlue";
             // 
@@ -207,7 +207,7 @@
             // 
             this.txtSchoolName3.Location = new System.Drawing.Point(136, 213);
             this.txtSchoolName3.Name = "txtSchoolName3";
-            this.txtSchoolName3.Size = new System.Drawing.Size(332, 24);
+            this.txtSchoolName3.Size = new System.Drawing.Size(332, 28);
             this.txtSchoolName3.TabIndex = 14;
             this.txtSchoolName3.ThemeName = "TelerikMetroBlue";
             // 
@@ -215,7 +215,7 @@
             // 
             this.txtSchoolName4.Location = new System.Drawing.Point(136, 247);
             this.txtSchoolName4.Name = "txtSchoolName4";
-            this.txtSchoolName4.Size = new System.Drawing.Size(332, 24);
+            this.txtSchoolName4.Size = new System.Drawing.Size(332, 28);
             this.txtSchoolName4.TabIndex = 15;
             this.txtSchoolName4.ThemeName = "TelerikMetroBlue";
             // 
@@ -223,7 +223,7 @@
             // 
             this.txtSchoolName5.Location = new System.Drawing.Point(136, 281);
             this.txtSchoolName5.Name = "txtSchoolName5";
-            this.txtSchoolName5.Size = new System.Drawing.Size(332, 24);
+            this.txtSchoolName5.Size = new System.Drawing.Size(332, 28);
             this.txtSchoolName5.TabIndex = 16;
             this.txtSchoolName5.ThemeName = "TelerikMetroBlue";
             // 
@@ -269,6 +269,7 @@
             this.Controls.Add(this.radLabel2);
             this.Controls.Add(this.radLabel1);
             this.Controls.Add(this.nudDurationSec);
+            this.MaximizeBox = false;
             this.Name = "SetupForm";
             // 
             // 

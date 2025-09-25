@@ -254,7 +254,7 @@
             // 
             this.chkTestMode.Location = new System.Drawing.Point(26, 426);
             this.chkTestMode.Name = "chkTestMode";
-            this.chkTestMode.Size = new System.Drawing.Size(159, 17);
+            this.chkTestMode.Size = new System.Drawing.Size(161, 19);
             this.chkTestMode.TabIndex = 1;
             this.chkTestMode.Text = "Enable Button Test Mode";
             this.chkTestMode.ThemeName = "TelerikMetroBlue";
@@ -263,7 +263,7 @@
             // 
             this.chkLiveMonitor.Location = new System.Drawing.Point(27, 172);
             this.chkLiveMonitor.Name = "chkLiveMonitor";
-            this.chkLiveMonitor.Size = new System.Drawing.Size(90, 17);
+            this.chkLiveMonitor.Size = new System.Drawing.Size(92, 19);
             this.chkLiveMonitor.TabIndex = 2;
             this.chkLiveMonitor.Text = "Live Monitor";
             this.chkLiveMonitor.ThemeName = "TelerikMetroBlue";
@@ -386,6 +386,7 @@
             this.Controls.Add(this.cmbComPorts);
             this.Controls.Add(this.lblComPort);
             this.Controls.Add(this.radLabel1);
+            this.MinimizeBox = false;
             this.Name = "CheckForm";
             // 
             // 
